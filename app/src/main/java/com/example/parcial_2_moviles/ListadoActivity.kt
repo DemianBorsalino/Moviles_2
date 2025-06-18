@@ -16,12 +16,6 @@ class ListadoActivity : AppCompatActivity() {
         binding = ActivityListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Agregar la película pasada desde RegistroActivity
-        val pelicula = intent.getParcelableExtra<Pelicula>("pelicula")
-        if (pelicula != null) {
-            viewModel.agregarPelicula(pelicula)
-        }
-
         // Configurar RecyclerView
         binding.rvPeliculas.layoutManager = LinearLayoutManager(this)
         binding.rvPeliculas.adapter = PeliculaAdapter(viewModel.obtenerPeliculas())

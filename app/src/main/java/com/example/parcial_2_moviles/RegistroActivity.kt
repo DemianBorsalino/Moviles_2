@@ -41,11 +41,11 @@ class RegistroActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Crear objeto Pelicula y mandarlo por Intent
-            val pelicula = Pelicula(titulo, anio, resena, genero)
+            // Agregar película al ViewModel
+            viewModel.agregarPelicula(titulo, anio, resena, genero)
 
+            // Ir al ListadoActivity
             val intent = Intent(this, ListadoActivity::class.java)
-            intent.putExtra("pelicula", pelicula)
             startActivity(intent)
         }
     }
