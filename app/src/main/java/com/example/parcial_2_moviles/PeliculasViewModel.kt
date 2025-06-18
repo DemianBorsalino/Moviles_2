@@ -9,14 +9,18 @@ class PeliculaViewModel : ViewModel() {
     val peliculas: List<Pelicula>
         get() = listaPeliculas
 
-    fun agregarPelicula(titulo: String, año: Int, reseña: String, genero: Genero) {
+    fun agregarPelicula(titulo: String, ano: Int, resena: String, genero: Genero) {
         val nuevaPelicula = Pelicula(
             id = contadorId++,
             titulo = titulo,
-            añoDeEstreno = año,
-            reseña = reseña,
+            anoDeEstreno = ano,
+            resena = resena,
             genero = genero
         )
         listaPeliculas.add(nuevaPelicula)
+    }
+
+    fun obtenerPeliculas(): List<Pelicula> {
+        return peliculas
     }
 }

@@ -27,7 +27,7 @@ class RegistroActivity : AppCompatActivity() {
         binding.btnRegistrar.setOnClickListener {
             val titulo = binding.etTitulo.text.toString().trim()
             val anioStr = binding.etAnio.text.toString().trim()
-            val reseña = binding.etResena.text.toString().trim()
+            val resena = binding.etResena.text.toString().trim()
             val genero = Genero.values()[binding.spGenero.selectedItemPosition]
 
             if (titulo.isEmpty()) {
@@ -41,11 +41,11 @@ class RegistroActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Agregar película al ViewModel
-            viewModel.agregarPelicula(titulo, anio, reseña, genero)
+            // Crear objeto Pelicula y mandarlo por Intent
+            val pelicula = Pelicula(titulo, anio, resena, genero)
 
-            // Pasar a ListadoActivity (puede ser sin datos si usás ViewModel ahí también)
             val intent = Intent(this, ListadoActivity::class.java)
+            intent.putExtra("pelicula", pelicula)
             startActivity(intent)
         }
     }

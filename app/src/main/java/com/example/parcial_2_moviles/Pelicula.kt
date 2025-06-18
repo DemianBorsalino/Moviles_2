@@ -1,13 +1,14 @@
 package com.example.parcial_2_moviles
 
-enum class Genero {
-    ACCION, COMEDIA, DRAMA, DOCUMENTAL, OTRO
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 data class Pelicula(
     val id: Int,
     val titulo: String,
-    val añoDeEstreno: Int,
-    val reseña: String,
+    val anoDeEstreno: Int,
+    val resena: String,
     val genero: Genero
-)
+) : Parcelable
