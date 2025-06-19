@@ -27,7 +27,7 @@ class RegistroActivity : AppCompatActivity() {
         binding.btnRegistrar.setOnClickListener {
             val titulo = binding.etTitulo.text.toString().trim()
             val anioStr = binding.etAnio.text.toString().trim()
-            val resena = binding.etResena.text.toString().trim()
+            val resena = binding.etResenia.text.toString().trim()
             val genero = Genero.values()[binding.spGenero.selectedItemPosition]
 
             if (titulo.isEmpty()) {

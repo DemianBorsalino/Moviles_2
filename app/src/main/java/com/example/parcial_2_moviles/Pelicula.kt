@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class Pelicula(
     val id: Int,
     val titulo: String,
-    val anoDeEstreno: Int,
+    val anio: Int,
     val resena: String,
     val genero: Genero
 ) : Parcelable

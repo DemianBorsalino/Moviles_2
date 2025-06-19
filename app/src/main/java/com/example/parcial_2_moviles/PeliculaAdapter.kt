@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcial_2_moviles.databinding.ItemPeliculaBinding
 
-class PeliculaAdapter(private val lista: List<Pelicula>) : RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>() {
+class PeliculaAdapter(private var peliculas: List<Pelicula>) :
+    RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>() {
 
-    class PeliculaViewHolder(val binding: ItemPeliculaBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class PeliculaViewHolder(val binding: ItemPeliculaBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeliculaViewHolder {
         val binding = ItemPeliculaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -15,12 +17,19 @@ class PeliculaAdapter(private val lista: List<Pelicula>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: PeliculaViewHolder, position: Int) {
-        val pelicula = lista[position]
-        holder.binding.tvTitulo.text = pelicula.titulo
-        holder.binding.tvAnio.text = "Año: ${pelicula.anoDeEstreno}"
-        holder.binding.tvGenero.text = "Género: ${pelicula.genero}"
-        holder.binding.tvResena.text = "Reseña: ${pelicula.resena}"
+        val pelicula = peliculas[position]
+        with(holder.binding) {
+            tvTitulo.text = pelicula.titulo
+            tvAnio.text = "Año: ${pelicula.anio}"
+            tvGenero.text = "Género: ${pelicula.genero.name}"
+            tvResena.text = "Comentario: ${pelicula.resena}"
+        }
     }
 
-    override fun getItemCount(): Int = lista.size
+    override fun getItemCount(): Int = peliculas.size
+
+    fun actualizarLista(nuevaLista: List<Pelicula>) {
+        peliculas = nuevaLista
+        notifyDataSetChanged()
+    }
 }

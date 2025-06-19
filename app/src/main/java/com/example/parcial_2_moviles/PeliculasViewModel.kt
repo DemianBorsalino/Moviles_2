@@ -1,26 +1,26 @@
 package com.example.parcial_2_moviles
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 class PeliculaViewModel : ViewModel() {
-    private val listaPeliculas = mutableListOf<Pelicula>()
-    private var contadorId = 1
 
-    val peliculas: List<Pelicula>
-        get() = listaPeliculas
+    private val _peliculas = MutableLiveData<List<Pelicula>>(emptyList())
+    val peliculas: LiveData<List<Pelicula>> get() = _peliculas
+
+    private var contadorId = 1
 
     fun agregarPelicula(titulo: String, ano: Int, resena: String, genero: Genero) {
         val nuevaPelicula = Pelicula(
             id = contadorId++,
             titulo = titulo,
-            anoDeEstreno = ano,
+            anio = ano,
             resena = resena,
             genero = genero
         )
-        listaPeliculas.add(nuevaPelicula)
-    }
 
-    fun obtenerPeliculas(): List<Pelicula> {
-        return peliculas
+        val listaActual = _peliculas.value ?: emptyList()
+        _peliculas.value = listaActual + nuevaPelicula
     }
 }
