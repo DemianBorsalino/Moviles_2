@@ -41,11 +41,16 @@ class RegistroActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Agregar película al ViewModel
-            viewModel.agregarPelicula(titulo, anio, resena, genero)
+            val nuevaPelicula = Pelicula(
+                id = 0, // Podés asignar un ID real en Listado si querés
+                titulo = titulo,
+                anio = anio,
+                resena = resena,
+                genero = genero
+            )
 
-            // Ir al ListadoActivity
             val intent = Intent(this, ListadoActivity::class.java)
+            intent.putExtra("pelicula", nuevaPelicula)
             startActivity(intent)
         }
     }

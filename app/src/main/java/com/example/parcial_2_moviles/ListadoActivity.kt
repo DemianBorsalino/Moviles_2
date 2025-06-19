@@ -17,11 +17,16 @@ class ListadoActivity : AppCompatActivity() {
         binding = ActivityListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Agregar la película pasada por Intent (si existe)
+        val peliculaRecibida = intent.getParcelableExtra<Pelicula>("pelicula")
+        peliculaRecibida?.let {
+            viewModel.agregarPelicula(it.titulo, it.anio, it.resena, it.genero)
+        }
+
         adapter = PeliculaAdapter(emptyList())
         binding.rvPeliculas.layoutManager = LinearLayoutManager(this)
         binding.rvPeliculas.adapter = adapter
 
-        // Observar cambios en la lista de películas para actualizar el RecyclerView
         viewModel.peliculas.observe(this) { listaPeliculas ->
             adapter.actualizarLista(listaPeliculas)
         }

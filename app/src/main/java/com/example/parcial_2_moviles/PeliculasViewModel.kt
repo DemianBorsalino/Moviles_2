@@ -24,3 +24,7 @@ class PeliculaViewModel : ViewModel() {
         _peliculas.value = listaActual + nuevaPelicula
     }
 }
+
+//Viewmodel es aquel nos deja ingresar los objetos dentro de la app. Creandolo mediante esta función
+//con la información agregada en pentalla. El contador está hecho para que tengan un ID, que sería
+//lo mejor para una base de datos original en sql o lo que sea
