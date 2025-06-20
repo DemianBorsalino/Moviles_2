@@ -11,17 +11,22 @@ class PeliculaViewModel : ViewModel() {
 
     private var contadorId = 1
 
-    fun agregarPelicula(titulo: String, ano: Int, resena: String, genero: Genero) {
+    fun agregarPelicula(titulo: String, ano: Int, resena: String, genero: Genero, ranking: Int) {
         val nuevaPelicula = Pelicula(
             id = contadorId++,
             titulo = titulo,
             anio = ano,
             resena = resena,
-            genero = genero
+            genero = genero,
+            ranking = ranking
         )
 
         val listaActual = _peliculas.value ?: emptyList()
         _peliculas.value = listaActual + nuevaPelicula
+    }
+
+    fun setLista(lista: List<Pelicula>) {
+        _peliculas.value = lista
     }
 }
 

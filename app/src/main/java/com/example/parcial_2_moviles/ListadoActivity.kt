@@ -1,12 +1,13 @@
 package com.example.parcial_2_moviles
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial_2_moviles.databinding.ActivityListadoBinding
 
-class ListadoActivity : AppCompatActivity() {
+class ListadoActivity : AppCompatActivity(), NavegacionPantallas {
 
     private lateinit var binding: ActivityListadoBinding
     private val viewModel: PeliculaViewModel by viewModels()
@@ -17,18 +18,29 @@ class ListadoActivity : AppCompatActivity() {
         binding = ActivityListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Agregar la película pasada por Intent (si existe)
-        val peliculaRecibida = intent.getParcelableExtra<Pelicula>("pelicula")
-        peliculaRecibida?.let {
-            viewModel.agregarPelicula(it.titulo, it.anio, it.resena, it.genero)
+        // ✅ Volver a cargar las películas desde memoria
+        val app = application as PeliculaApp
+        viewModel.setLista(app.peliculas)
+
+        adapter = PeliculaAdapter(emptyList()) { peliculaAEliminar ->
+            app.peliculas.remove(peliculaAEliminar)
+            viewModel.setLista(app.peliculas)
         }
 
-        adapter = PeliculaAdapter(emptyList())
         binding.rvPeliculas.layoutManager = LinearLayoutManager(this)
         binding.rvPeliculas.adapter = adapter
 
         viewModel.peliculas.observe(this) { listaPeliculas ->
             adapter.actualizarLista(listaPeliculas)
         }
+
+        binding.btnVolverAlMenu.setOnClickListener {
+            goTo(this, MainActivity::class.java)
+        }
+
+        binding.btnIrARegistro.setOnClickListener {
+            goTo(this, RegistroActivity::class.java)
+        }
     }
+
 }

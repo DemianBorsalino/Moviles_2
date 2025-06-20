@@ -10,5 +10,6 @@ data class Pelicula(
     val titulo: String,
     val anio: Int,
     val resena: String,
-    val genero: Genero
+    val genero: Genero,
+    val ranking: Int
 ) : Parcelable

@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parcial_2_moviles.databinding.ItemPeliculaBinding
 
-class PeliculaAdapter(private var peliculas: List<Pelicula>) :
-    RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>() {
+class PeliculaAdapter(
+    private var peliculas: List<Pelicula>,
+    private val onEliminarClick: (Pelicula) -> Unit
+) : RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>() {
 
     inner class PeliculaViewHolder(val binding: ItemPeliculaBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -23,6 +25,11 @@ class PeliculaAdapter(private var peliculas: List<Pelicula>) :
             tvAnio.text = "Año: ${pelicula.anio}"
             tvGenero.text = "Género: ${pelicula.genero.name}"
             tvResena.text = "Comentario: ${pelicula.resena}"
+            rbRanking.rating = pelicula.ranking.toFloat()
+
+            btnEliminar.setOnClickListener {
+                onEliminarClick(pelicula)
+            }
         }
     }
 
