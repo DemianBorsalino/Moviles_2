@@ -42,12 +42,12 @@ android {
 
 dependencies {
 
-    implementation ("com.google.android.material:material:1.12.0")
+    implementation ("com.google.android.material:material:1.11.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0") //nos deja importar lyfecycle a nuestro programa
     implementation ("androidx.activity:activity-ktx:1.8.2")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+//    implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)

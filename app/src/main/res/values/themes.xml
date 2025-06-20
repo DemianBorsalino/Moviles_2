@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ParcialMoviles" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme.ParcialMoviles" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Personalización de colores -->
         <item name="colorPrimary">#6200EE</item>
         <item name="colorSecondary">#03DAC6</item>
     </style>
-    <style name="Theme.Parcial_2_Moviles" parent="Base.Theme.Parcial_2_Moviles" />
+
+    <!-- Este segundo estilo no parece usarse. Si no lo necesitás, podés borrarlo o corregirlo -->
+    <style name="Theme.Parcial_2_Moviles" parent="Theme.ParcialMoviles" />
 </resources>
