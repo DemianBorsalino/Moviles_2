@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Parcial_2_Moviles" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.ParcialMoviles" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Personalización de colores -->
+        <item name="colorPrimary">#6200EE</item>
+        <item name="colorSecondary">#03DAC6</item>
     </style>
-
     <style name="Theme.Parcial_2_Moviles" parent="Base.Theme.Parcial_2_Moviles" />
 </resources>

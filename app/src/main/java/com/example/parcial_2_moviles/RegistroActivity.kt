@@ -29,16 +29,16 @@ class RegistroActivity : AppCompatActivity(), NavegacionPantallas {
 
         // Cargar opciones del Spinner (Enum)
         val generos = Genero.values().map { it.name.capitalize() }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, generos)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spGenero.adapter = adapter
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, generos)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spGenero.setAdapter(spinnerAdapter)
 
         binding.btnRegistrar.setOnClickListener {
             val titulo = binding.etTitulo.text.toString().trim()
             val anioStr = binding.etAnio.text.toString().trim()
             val resena = binding.etResenia.text.toString().trim()
             val ranking = binding.ratingBar.rating.toInt()
-            val genero = Genero.values()[binding.spGenero.selectedItemPosition]
+            val generoSeleccionado = binding.spGenero.text.toString().trim()
 
 
             if (titulo.isEmpty()) {
@@ -49,6 +49,12 @@ class RegistroActivity : AppCompatActivity(), NavegacionPantallas {
             val anio = validarAnio(anioStr)
             if (anio == null) {
                 Toast.makeText(this, "El año debe estar entre 1900 y 2025", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val genero = Genero.values().find { it.name.equals(generoSeleccionado, ignoreCase = true) }
+            if (genero == null) {
+                Toast.makeText(this, "Por favor, seleccioná un género válido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
