@@ -29,16 +29,16 @@ class RegistroActivity : AppCompatActivity(), NavegacionPantallas {
 
         // Cargar opciones del Spinner (Enum)
         val generos = Genero.values().map { it.name.capitalize() }
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, generos)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spGenero.setAdapter(spinnerAdapter)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, generos)
+        binding.spGenero.setAdapter(adapter)
 
         binding.btnRegistrar.setOnClickListener {
             val titulo = binding.etTitulo.text.toString().trim()
             val anioStr = binding.etAnio.text.toString().trim()
             val resena = binding.etResenia.text.toString().trim()
             val ranking = binding.ratingBar.rating.toInt()
-            val generoSeleccionado = binding.spGenero.text.toString().trim()
+            val generoSeleccionado = binding.spGenero.text.toString().uppercase()
+            val genero = Genero.valueOf(generoSeleccionado)
 
 
             if (titulo.isEmpty()) {
@@ -52,11 +52,11 @@ class RegistroActivity : AppCompatActivity(), NavegacionPantallas {
                 return@setOnClickListener
             }
 
-            val genero = Genero.values().find { it.name.equals(generoSeleccionado, ignoreCase = true) }
+            /*val genero = Genero.values().find { it.name.equals(generoSeleccionado, ignoreCase = true) }
             if (genero == null) {
                 Toast.makeText(this, "Por favor, seleccioná un género válido", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            }*/
 
             // Creamos la nueva película
             val nuevaPelicula = Pelicula(
