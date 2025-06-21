@@ -95,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="1"
+                android:rating="1"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@id/tilGenero"
                 app:layout_constraintStart_toStartOf="parent"
