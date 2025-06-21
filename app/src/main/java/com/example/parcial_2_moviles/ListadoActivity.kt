@@ -6,6 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial_2_moviles.databinding.ActivityListadoBinding
+import androidx.appcompat.app.AlertDialog
+
 
 class ListadoActivity : AppCompatActivity(), NavegacionPantallas {
 
@@ -13,18 +15,19 @@ class ListadoActivity : AppCompatActivity(), NavegacionPantallas {
     private val viewModel: PeliculaViewModel by viewModels()
     private lateinit var adapter: PeliculaAdapter
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ✅ Volver a cargar las películas desde memoria
+        // Volver a cargar las películas desde memoria
         val app = application as PeliculaApp
         viewModel.setLista(app.peliculas)
 
         adapter = PeliculaAdapter(emptyList()) { peliculaAEliminar ->
-            app.peliculas.remove(peliculaAEliminar)
-            viewModel.setLista(app.peliculas)
+            confirmarEliminacion(peliculaAEliminar)
         }
 
         binding.rvPeliculas.layoutManager = LinearLayoutManager(this)
@@ -42,5 +45,23 @@ class ListadoActivity : AppCompatActivity(), NavegacionPantallas {
             goTo(this, RegistroActivity::class.java)
         }
     }
+
+    private fun confirmarEliminacion(pelicula: Pelicula) {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar eliminación")
+            .setMessage("¿Estás seguro de que querés eliminar \"${pelicula.titulo}\"?")
+            .setPositiveButton("Sí, eliminar") { dialog, _ ->
+                val app = application as PeliculaApp
+                app.peliculas.remove(pelicula)
+                viewModel.setLista(app.peliculas)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+
 
 }
