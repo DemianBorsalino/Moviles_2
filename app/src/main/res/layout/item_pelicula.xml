@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="377dp"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -19,40 +19,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Título"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvAnio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
+            android:paddingTop="16sp"
             android:text="Año: 2020" />
 
         <TextView
             android:id="@+id/tvGenero"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="37dp"
+            android:paddingTop="16sp"
             android:text="Género: Acción" />
 
         <TextView
             android:id="@+id/tvResena"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="33dp"
+            android:paddingTop="16sp"
             android:text="Comentario: Muy buena" />
 
         <RatingBar
             android:id="@+id/rbRanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:isIndicator="true"
             android:numStars="5"
-            android:stepSize="1"
-            android:isIndicator="true" />
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp"
+            android:stepSize="1" />
 
         <Button
             android:id="@+id/btnEliminar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="185dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
             android:text="Eliminar"
-            android:layout_marginTop="8dp" />
+
+            />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
